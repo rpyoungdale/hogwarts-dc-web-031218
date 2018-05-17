@@ -7,6 +7,8 @@ class HogItem extends React.Component {
     this.state = {
       showDetails: false
     };
+
+    this.toggleDetails = this.toggleDetails.bind(this);
   }
 
   getImage = hogObj => {
@@ -16,52 +18,48 @@ class HogItem extends React.Component {
     return pic;
   };
 
-  handleDetailsClick = () => {
-    this.setState({
-      showDetails: true
-    });
-  };
-
-  hideDetailsClick = () => {
-    this.setState({
-      showDetails: false
-    });
+  toggleDetails = () => {
+    if (this.state.showDetails) {
+      this.setState({
+        showDetails: false
+      });
+    } else {
+      this.setState({
+        showDetails: true
+      });
+    }
   };
 
   render() {
     return (
-      <div className="ui eight wide column">
-        <div className="ui card">
-          <img src={this.getImage(this.props.hog)} />
-          <p>HogName: {this.props.hog.name}</p>
-          {this.state.showDetails ? (
-            <button onClick={this.hideDetailsClick}>Hide Details</button>
-          ) : (
-            <button onClick={this.handleDetailsClick}>Show Details</button>
-          )}
-          {this.state.showDetails ? (
-            <div>
-              <h4>Details</h4>
-              <ul>
-                <li>Specialty: {this.props.hog.specialty}</li>
-                <li>
+      <div className="four wide column">
+        <div onClick={this.toggleDetails} className="ui card">
+          <div className="image">
+            <img src={this.getImage(this.props.hog)} />
+          </div>
+          <div className="content">
+            <p>{this.props.hog.name}</p>
+            {this.state.showDetails ? (
+              <div className="content">
+                <div>Specialty: {this.props.hog.specialty}</div>
+                <div>
                   Highest Medal Achieved:{" "}
                   {this.props.hog["highest medal achieved"]}
-                </li>
-                <li>Greased: {this.props.hog["greased"] ? "True" : "False"}</li>
-                <li>
+                </div>
+                <div>Greased: {this.props.hog.greased ? "Yes" : "No"}</div>
+                <div>
                   Weight:
                   {
                     this.props.hog[
                       "weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"
                     ]
                   }
-                </li>
-              </ul>
-            </div>
-          ) : (
-            <div />
-          )}
+                </div>
+              </div>
+            ) : (
+              <div />
+            )}
+          </div>
         </div>
       </div>
     );

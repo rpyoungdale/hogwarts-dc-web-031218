@@ -10,9 +10,6 @@ class App extends Component {
     this.state = {
       hogsArr: hogs
     };
-
-    this.filterBy = this.filterBy.bind(this);
-    this.filterGreased = this.filterGreased.bind(this);
   }
 
   filterBy = e => {
