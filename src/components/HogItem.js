@@ -33,7 +33,7 @@ class HogItem extends React.Component {
   render() {
     return (
       <div className="four wide column">
-        <div onClick={this.toggleDetails} className="ui card">
+        <div onClick={this.toggleDetails} className="ui raised link card">
           <div className="image">
             <img src={this.getImage(this.props.hog)} />
           </div>
